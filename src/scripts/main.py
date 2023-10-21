@@ -4,11 +4,11 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 def main():
 
-    df = Data_Handling()
-
-    clf = CustomLogisticRegression()
-    clf.train(df.X, df.y)
+    dh = Data_Handling()
+    clf = CustomLogisticRegression(data_handler= dh)
+  
     if False:
+        clf.train(df.X, df.y)
         # Make predictions
         y_pred = clf.predict(df.X_val)
 
@@ -28,12 +28,12 @@ def main():
         print("\nMissing Value Counts per Column:")
         print(missing_counts)
 
-    y_prediction = clf.predict(df.test_data)
-    print(y_prediction)
+        y_prediction = clf.predict(df.test_data)
+        print(y_prediction)
 
-    submission = pd.read_csv("src\\data\\gender_submission.csv")
-    submission['Survived'] = y_prediction
-    submission.to_csv("src\\data\\gender_submission.csv", index=False)
+        submission = pd.read_csv("src\\data\\gender_submission.csv")
+        submission['Survived'] = y_prediction
+        submission.to_csv("src\\data\\gender_submission.csv", index=False)
 
 
 
